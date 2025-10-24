@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_ui/risit_screen/risit_screen.dart';
+import 'package:flutter_challenge_ui/chat_ui/colors.dart';
+import 'package:flutter_challenge_ui/chat_ui/navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: primaryDark),
       ),
-      home: RisitScreen(),
+      home: Navigation(),
     );
   }
 }
