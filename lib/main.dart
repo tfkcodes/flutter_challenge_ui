@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_ui/chat_ui/colors.dart';
-import 'package:flutter_challenge_ui/chat_ui/navigation.dart';
+
+import 'chat_ui/navigation.dart';
 
 void main() {
   runApp(const MyApp());

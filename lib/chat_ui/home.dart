@@ -277,87 +277,84 @@ class _HomeState extends State<Home> {
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_rounded)),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.search, color: light),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert_rounded, color: light),
+          ),
         ],
       ),
       body: ListView.separated(
         itemCount: chats.length,
         separatorBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-            child: Divider(thickness: 0.1),
-          );
+          return Divider(thickness: 0.1, indent: 100);
         },
         itemBuilder: (context, index) {
           final chat = chats[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => ChatScreen(chat: chat)),
-                );
-              },
-              title: Text(
-                chat.title,
-                style: TextStyle(
-                  color: light,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+          return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => ChatScreen(chat: chat)),
+              );
+            },
+            title: Text(
+              chat.title,
+              style: TextStyle(
+                color: light,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              subtitle: Text(
-                chat.content,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: chat.read ? FontWeight.normal : FontWeight.bold,
-                  color: chat.read ? Colors.grey : light,
-                ),
+            ),
+            subtitle: Text(
+              chat.content,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: chat.read ? FontWeight.normal : FontWeight.bold,
+                color: chat.read ? Colors.grey : light,
               ),
-              leading: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: chat.bg,
-                    child: Text(
-                      chat.usn,
-                      style: TextStyle(
-                        color: light,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+            ),
+            leading: Stack(
+              children: [
+                CircleAvatar(
+                  radius: 35,
+                  backgroundColor: chat.bg,
+                  child: Text(
+                    chat.usn,
+                    style: TextStyle(color: light, fontWeight: FontWeight.bold),
                   ),
-                  Positioned(
-                    right: 15,
-                    child: CircleAvatar(
-                      radius: 6,
-                      backgroundColor: primaryDark,
-                      child: CircleAvatar(radius: 5, backgroundColor: four),
-                    ),
+                ),
+                Positioned(
+                  right: 15,
+                  child: CircleAvatar(
+                    radius: 6,
+                    backgroundColor: primaryDark,
+                    child: CircleAvatar(radius: 5, backgroundColor: four),
                   ),
-                ],
-              ),
-              trailing: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(chat.time),
-                  SizedBox(height: 10),
-                  chat.count != ""
-                      ? CircleAvatar(
-                          radius: 10,
-                          backgroundColor: chat.countBg,
-                          child: Text(
-                            chat.count ?? "",
-                            style: TextStyle(color: light, fontSize: 10),
-                          ),
-                        )
-                      : SizedBox.shrink(),
-                ],
-              ),
+                ),
+              ],
+            ),
+            trailing: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(chat.time),
+                SizedBox(height: 10),
+                chat.count != ""
+                    ? CircleAvatar(
+                        radius: 10,
+                        backgroundColor: chat.countBg,
+                        child: Text(
+                          chat.count ?? "",
+                          style: TextStyle(color: light, fontSize: 10),
+                        ),
+                      )
+                    : SizedBox.shrink(),
+              ],
             ),
           );
         },
@@ -405,6 +402,7 @@ class ChatMessages {
   final String? count;
   final Color? countBg;
   final bool sender;
+  List<String> reactions;
 
   ChatMessages({
     required this.title,
@@ -415,5 +413,6 @@ class ChatMessages {
     this.count,
     required this.bg,
     this.countBg,
-  });
+    List<String>? reactions,
+  }) : reactions = reactions ?? [];
 }
