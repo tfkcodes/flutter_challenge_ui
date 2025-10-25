@@ -56,9 +56,13 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     image: AssetImage("assets/images/darkBg.jpeg"),
                     fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      primaryDark.withValues(alpha: 0.5),
+                      BlendMode.overlay,
+                    ),
                   ),
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
@@ -162,7 +166,7 @@ class _ChattingTileState extends State<ChattingTile>
   }
 
   void _showMessageMenu(BuildContext context, Offset tapPosition) {
-    _hideReactionMenu(); // Remove reaction picker first
+    _hideReactionMenu();
 
     final RenderBox renderBox = context.findRenderObject() as RenderBox;
     final position = renderBox.localToGlobal(Offset.zero);
@@ -170,7 +174,7 @@ class _ChattingTileState extends State<ChattingTile>
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent, // Make transparent for blur effect
+      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (context) => Stack(
         children: [
@@ -204,8 +208,12 @@ class _ChattingTileState extends State<ChattingTile>
       margin: const EdgeInsets.all(20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: widget.chat.sender
+            ? CrossAxisAlignment.start
+            : CrossAxisAlignment.end,
         children: [
           Container(
+            width: MediaQuery.sizeOf(context).width * 0.8,
             decoration: BoxDecoration(
               color: Colors.grey[850],
               borderRadius: BorderRadius.circular(25),
@@ -248,6 +256,7 @@ class _ChattingTileState extends State<ChattingTile>
           const SizedBox(height: 10),
           ChattingTile(chat: widget.chat),
           Container(
+            width: MediaQuery.sizeOf(context).width * 0.6,
             decoration: BoxDecoration(
               color: Colors.grey[900],
               borderRadius: BorderRadius.circular(20),
