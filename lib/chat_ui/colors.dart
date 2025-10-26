@@ -13,3 +13,4 @@ Color five = Color(0xFFCB7DB9);
 Color six = Color(0xFFAD9B53);
 Color seven = Color(0xFFB57256);
 Color input = Color(0xFF434242);
+Color blue = Color(0xFF00296F);

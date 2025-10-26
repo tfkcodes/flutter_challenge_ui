@@ -97,7 +97,9 @@ class _RisitScreenState extends State<RisitScreen> {
         backgroundColor: bgColor,
         child: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
     );
@@ -155,10 +157,7 @@ class _RisitScreenState extends State<RisitScreen> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Colors.black,
-                Colors.black.withOpacity(0.1),
-              ],
+              colors: [Colors.black, Colors.black.withOpacity(0.1)],
             ),
           ),
         ),
@@ -224,10 +223,7 @@ class _RisitScreenState extends State<RisitScreen> {
   Widget _buildInvoiceTitle() {
     return const Text(
       "Trip Invoice - Japan Summer 2025",
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w300,
-      ),
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
     );
   }
 
@@ -255,10 +251,7 @@ class _RisitScreenState extends State<RisitScreen> {
               "Per Person",
               style: TextStyle(fontWeight: FontWeight.w300),
             ),
-            Text(
-              "\$6,000",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text("\$6,000", style: TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
       ],
@@ -305,10 +298,7 @@ class _RisitScreenState extends State<RisitScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             transaction.name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ),
       ],
@@ -332,10 +322,7 @@ class _RisitScreenState extends State<RisitScreen> {
               size: 20,
             ),
             const SizedBox(width: 4),
-            Text(
-              transaction.status,
-              style: const TextStyle(fontSize: 12),
-            ),
+            Text(transaction.status, style: const TextStyle(fontSize: 12)),
           ],
         ),
       ),
@@ -422,8 +409,9 @@ class _RisitScreenState extends State<RisitScreen> {
       right: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:
-            _progressIcons.map((icon) => _buildProgressIcon(icon)).toList(),
+        children: _progressIcons
+            .map((icon) => _buildProgressIcon(icon))
+            .toList(),
       ),
     );
   }
@@ -437,11 +425,7 @@ class _RisitScreenState extends State<RisitScreen> {
         borderRadius: BorderRadius.circular(99),
       ),
       child: Center(
-        child: Icon(
-          progressIcon.icon,
-          color: progressIcon.color,
-          size: 20,
-        ),
+        child: Icon(progressIcon.icon, color: progressIcon.color, size: 20),
       ),
     );
   }
@@ -542,16 +526,10 @@ class __BottomPaymentSectionState extends State<_BottomPaymentSection> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "Payment Method",
-          style: TextStyle(fontSize: 14),
-        ),
+        const Text("Payment Method", style: TextStyle(fontSize: 14)),
         Row(
           children: [
-            const Text(
-              "Visa Ending 2986",
-              style: TextStyle(fontSize: 14),
-            ),
+            const Text("Visa Ending 2986", style: TextStyle(fontSize: 14)),
             const SizedBox(width: 8),
             Container(
               height: 30,
@@ -575,21 +553,15 @@ class __BottomPaymentSectionState extends State<_BottomPaymentSection> {
       ),
       height: 45,
       child: const Center(
-        child: Text(
-          "Pay Now",
-          style: TextStyle(color: bgColor),
-        ),
+        child: Text("Pay Now", style: TextStyle(color: bgColor)),
       ),
     );
   }
 }
 
 class DottedLine extends StatefulWidget {
-  const DottedLine({
-    Key? key,
-    this.height = 1,
-    this.color = Colors.black,
-  }) : super(key: key);
+  const DottedLine({Key? key, this.height = 1, this.color = Colors.black})
+    : super(key: key);
 
   final double height;
   final Color color;
@@ -646,10 +618,7 @@ class ProgressIcon {
   final Color color;
   final IconData? icon;
 
-  const ProgressIcon({
-    required this.color,
-    this.icon,
-  });
+  const ProgressIcon({required this.color, this.icon});
 }
 
 class InvoiceClipper extends CustomClipper<Path> {

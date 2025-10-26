@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_ui/chat_ui/colors.dart';
-
-import 'chat_ui/navigation.dart';
+import 'package:flutter_challenge_ui/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: primaryDark),
       ),
-      home: Navigation(),
+      home: HomeScreen(),
     );
   }
 }
